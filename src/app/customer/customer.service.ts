@@ -15,9 +15,13 @@ export class CustomerService {
     }
 
     console.log(fd.getAll('excelFiles[]'));
-    return this.http.post('', body, {
-      reportProgress: true,
-      observe: 'events'
-    });
+    return this.http.post(
+      'https://swiftfilupload.azurewebsites.net/api/Uploads/users',
+      fd,
+      {
+        reportProgress: true,
+        observe: 'events'
+      }
+    );
   }
 }

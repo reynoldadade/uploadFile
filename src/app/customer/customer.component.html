@@ -66,18 +66,24 @@
   <div class="col-md-6 offset-md-3">
     <div class="card">
       <div class="card-body">
-        <form (submit)="submit()">
+        <form (submit)="submit()" [formGroup]="uploadForm">
           <div class="form-group">
             <input
               type="file"
-              class="form-control"
+              class="form-control-file"
               (change)="onFileSelected($event)"
+              (drop)="onFileSelected($event)"
+              [formControlName]="'file'"
               multiple
               required
             />
           </div>
-          <button class="btn btn-primary btn-block" type="submit">
-            Upload
+          <button
+            class="btn btn-success btn-block"
+            type="submit"
+            [disabled]="uploadForm.invalid"
+          >
+            Upload <i class="fas fa-upload"></i>
           </button>
         </form>
         <ul class="list-group">
@@ -88,6 +94,20 @@
             {{ selectedFile.name }}
           </li>
         </ul>
+        <div class="card-footer" *ngIf="upload">
+          <ul class="list-group">
+            <li class="list-group-item">
+              Upload Progress {{ progress }}%
+              <i class="fas fa-sync fa-spin float-right"></i>
+            </li>
+            <li
+              class="list-group-item"
+              *ngFor="let item of uploadResponse.alreadyExists"
+            >
+              {{ item }} <span class="text-danger">Already exists</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
