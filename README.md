@@ -1,6 +1,12 @@
 # Swift
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
+This project connects with a server that accepts files via FormData and add to a custommer database if a customers exists you will be notified on whuich customers have their data allready in the system
+
+But in essence what you send is dependent on the api but the neat thing here is that we are using rxjs to watch upload progress 
+Modify the toasters to return ny kind of message you want
+The most crucial part of this project is how it uses events to track changes
+Insert your api link inside customer.service.ts
 
 ## Development server
 
